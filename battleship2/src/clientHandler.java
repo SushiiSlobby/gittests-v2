@@ -42,7 +42,7 @@ public class clientHandler implements Runnable{
 		}
 		
 		finally {
-			System.out.println("[ser] sent now close");
+			System.out.println("[ser] a user has left");
 			out.close();
 			try {
 				client.close();
