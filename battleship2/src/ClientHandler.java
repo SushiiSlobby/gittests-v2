@@ -49,6 +49,7 @@ public class ClientHandler implements Runnable{
 	public void broadcastMessage(String messageToSend) {
 		for (ClientHandler clientHandler : clientHandlers) {
 			try {
+//errir gere
 				if (!clientHandler.clientUsername.equals(clientUsername)) {
 					clientHandler.bufferedWriter.write(messageToSend);
 					clientHandler.bufferedWriter.newLine(); //dont sending data so dont need to wait

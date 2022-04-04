@@ -36,12 +36,33 @@ public class Client {
 			bufferedWriter.newLine();
 			bufferedWriter.flush();
 			
-			Scanner scanner = new Scanner(System.in);
+			//Scanner scanner = new Scanner(System.in);
 			while (socket.isConnected()) {
-				String messageToSend = scanner.nextLine(); // picks up message from console, just change this to recieve message from text box so no scanner
-				bufferedWriter.write(username + ": " + messageToSend);
-				bufferedWriter.newLine();
-				bufferedWriter.flush();
+				//once input working, just make more methods and call those the same way you call the method to send to all
+				//String messageToSend = scanner.nextLine(); // picks up message from console, just change this to recieve message from text box so no scanner
+				try {
+					bufferedWriter.write(username + ": " + frame.text);
+					bufferedWriter.newLine();
+					bufferedWriter.flush();
+					
+				}
+				catch(Exception e) {
+					System.out.println("caught exception");
+					break;
+				}
+//				String messageToSend = frame.text;
+//				
+//				if (messageToSend != null && !messageToSend.equals("") && !messageToSend.equals(" ")) {
+//					bufferedWriter.write(username + ": " + messageToSend);
+//					bufferedWriter.newLine();
+//					bufferedWriter.flush();
+//					
+//				}
+//				frame.text = null;
+				
+				
+				
+				
 			}
 		}
 		catch(IOException e) {
@@ -58,6 +79,7 @@ public class Client {
 				while(socket.isConnected()) {
 					try {
 						msgFromGroupChat = bufferedReader.readLine();
+						//frame.serverText.setText(msgFromGroupChat);
 						System.out.println(msgFromGroupChat);
 					}
 					catch(IOException e) {
@@ -89,9 +111,9 @@ public class Client {
 	
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter your username for the group chat: ");
+		System.out.println("Enter your username: ");
 		String username = scanner.nextLine();
-		Socket socket = new Socket("localhost", 10420);
+		Socket socket = new Socket("localhost", 5000);
 		Client client = new Client(socket, username);
 		client.listenForMessage();
 		client.sendMessage();
